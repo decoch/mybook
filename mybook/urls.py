@@ -8,4 +8,5 @@ urlpatterns = patterns('',
 
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'^cms/', include('cms.urls', namespace='cms')), # add cms url pattern
+                       url(r'^api/', include('api.urls', namespace='api')),
 )

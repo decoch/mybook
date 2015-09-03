@@ -36,6 +36,7 @@ def book_edit(request, book_id=None):
                               dict(form=form, book_id=book_id),
                               context_instance=RequestContext(request))
 
+
 def book_del(request, book_id):
     '''書籍の削除'''
     # return HttpResponse(u'書籍の削除')
@@ -84,3 +85,36 @@ def impression_del(request, book_id, impression_id):
     impression = get_object_or_404(Impression, pk=impression_id)
     impression.delete()
     return redirect('cms:impression_list', book_id=book_id)
+
+"""
+def user_list(request):
+    '''ユーザー一覧'''
+    users = User.object.all().order_by('id')
+    return render_to_response('cms/user_list.html',
+                              {'users':users},
+                              context_instance=RequestContext(request))
+
+def user_edit(request, user_id=None):
+    '''ユーザの編集'''
+    if user_id:
+        user = get_object_or_404(User, pk=user_id)
+    else:
+        user = User()
+    
+    if request.method == 'POST':
+        form  = UserForm(request.Post, instance=user)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+            return redirect('cms:user_list')
+        else:
+            form = UserForm(instance=user)
+
+        return render_to_response('cms/user_edit.html',
+                                  dict(form=form, user_id=user_id),
+                                  context_instance=RequestContext(request))
+
+def user_del(request, user_id):
+    user = 
+"""
+
